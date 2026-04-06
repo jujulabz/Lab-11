@@ -27,6 +27,19 @@ def test_adjust_rotation_negative_within_range():
     assert adjust_rotation(-100) == 260
 
 
-d
+def test_adjust_rotation_negative_single_underflow():
+    """Test that -460 degrees wraps to equivalent angle 260."""
+    assert adjust_rotation(-460) == 260
+
+
+def test_adjust_rotation_negative_double_underflow():
+    """Test that -820 degrees (2+ rotations) wraps to equivalent angle 260."""
+    assert adjust_rotation(-820) == 260
+
+
+def test_adjust_rotation_invalid_type_string():
+    """Test that passing a string raises TypeError."""
+    with pytest.raises(TypeError):
+        adjust_rotation("abc")
 
 
